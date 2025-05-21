@@ -29,10 +29,6 @@ public class Main {
             figuren[j + 1] = aktuellesElement;
         }
 
-        for (Figur f : figuren) {
-            System.out.println(f.getHeight());
-        }
-
         int BreiteFig = 0;
         for (int i = 0; i < figuren.length; i++) {
             BreiteFig = BreiteFig + figuren[i].getWidth();
@@ -43,22 +39,33 @@ public class Main {
 
         JFrame fenster = new JFrame("Fenster mit Figuren");
         fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenster.setSize(totalWidthPanel, maxHeightPanel);
-        fenster.setLocationRelativeTo(null);
+
+        int contentWidth = totalWidthPanel;
+        int contentHeight = maxHeightPanel;
+
+        fenster.setSize(contentWidth, contentHeight);
+
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 setBackground(Color.BLACK);
 
-                int offsetLeft = 0;
+                int offsetLeft = spaceBetweenFigures;
                 for (int i = 0; i < figuren.length; i++) {
                     figuren[i].paintOnGraphics(g, offsetLeft, maxHeightPanel);
-                    offsetLeft += figuren[i].getWidth() + spaceBetweenFigures; // Increment by width + space
+                    offsetLeft += figuren[i].getWidth() + spaceBetweenFigures;
                 }
+            }
+
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(totalWidthPanel, maxHeightPanel);
             }
         };
         fenster.add(panel);
+
+        fenster.pack();
         fenster.setVisible(true);
     }
 }

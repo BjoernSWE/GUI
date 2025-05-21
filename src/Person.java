@@ -36,31 +36,34 @@ public class Person extends Figur {
         double factor = this.factor;
 
         int x = offsetLeft;
-        int offsetTop = maxHeightPanel - this.getHeight();
+        int offsetTop = maxHeightPanel - (int) (legsHeight * factor);
 
-        int headW = (int) (headRadius * factor);
-        int headH = (int) (headRadius * factor);
-        g2.fillOval((x + getWidth() / 2) - headW / 2, offsetTop + 10, headW, headH);
-        offsetTop += headH;
+        int bodyW = (int) (mainBodyWidth * factor);
+        int legW = (int) (legsWidth * factor);
+        int legH = (int) (legsHeight * factor);
+        g2.fillRect((x + getWidth() / 2) - bodyW / 2, offsetTop, legW, legH); // Linkes Bein
+        g2.fillRect((x + getWidth() / 2) + bodyW / 2 - legW, offsetTop, legW, legH); // Rechtes Bein
+
+        offsetTop -= (int) (mainBodyHeight * factor);
+
+        int bodyH = (int) (mainBodyHeight * factor);
+        g2.fillRect((x + getWidth() / 2) - bodyW / 2, offsetTop, bodyW, bodyH);
+
+        offsetTop -= (int) (neckHeight * factor);
 
         int neckW = (int) (neckWidth * factor);
         int neckH = (int) (neckHeight * factor);
         g2.fillRect((x + getWidth() / 2) - neckW / 2, offsetTop, neckW, neckH);
-        offsetTop += neckH;
+
+        offsetTop -= (int) (headRadius * factor);
+
+        int headW = (int) (headRadius * factor);
+        int headH = (int) (headRadius * factor);
+        g2.fillOval((x + getWidth() / 2) - headW / 2, offsetTop + headRadius + 3, headW, headH);
 
         int armW = (int) (armsWidth * factor);
         int armH = (int) (armsHeight * factor);
-        g2.fillRect(x, offsetTop, armW, armH);
-        g2.fillRect(x + getWidth() - armW, offsetTop, armW, armH);
-
-        int bodyW = (int) (mainBodyWidth * factor);
-        int bodyH = (int) (mainBodyHeight * factor);
-        g2.fillRect((x + getWidth() / 2) - bodyW / 2, offsetTop, bodyW, bodyH);
-        offsetTop += bodyH;
-
-        int legW = (int) (legsWidth * factor);
-        int legH = (int) (legsHeight * factor);
-        g2.fillRect((x + getWidth() / 2) - bodyW / 2, offsetTop, legW, legH);
-        g2.fillRect((x + getWidth() / 2) + bodyW / 2 - legW, offsetTop, legW, legH);
+        g2.fillRect(x, offsetTop + headH + neckH, armW, armH); // Linker Arm
+        g2.fillRect(x + getWidth() - armW, offsetTop + headH + neckH, armW, armH);
     }
 }
