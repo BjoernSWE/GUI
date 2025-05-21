@@ -34,7 +34,6 @@ public class Cat extends Figur {
         double factor = this.factor;
         int offsetTop = maxHeightPanel - getHeight();
         int x = offsetLeft;
-
         int legW = (int) (legsWidth * factor);
         int legH = (int) (legsHeight * factor);
         g2.fillRect(x, offsetTop, legW, legH);
@@ -58,6 +57,6 @@ public class Cat extends Figur {
 
         int tailW = (int) (tailWidth * factor);
         int tailH = (int) (tailHeight * factor);
-        g2.fillRect(x + bodyW, maxHeightPanel - getHeight() + legH, tailW, tailH); // seitlich unten
+        g2.fillRect(x, maxHeightPanel - getHeight() - legH, tailW, tailH); // seitlich unten
     }
 }
