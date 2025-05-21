@@ -52,12 +52,9 @@ public class Main {
                 setBackground(Color.BLACK);
 
                 int offsetLeft = 0;
-                for (int i = 0; i < 5; i++) {
-                    int width = 50 + (i * 20);
-                    int height = 50 + (i * 10);
-                    // g.setColor(Color.WHITE);
-                    // g.fillRect(offsetLeft, 50, width, height);
-                    offsetLeft += width + spaceBetweenFigures;
+                for (int i = 0; i < figuren.length; i++) {
+                    figuren[i].paintOnGraphics(g, offsetLeft, maxHeightPanel);
+                    offsetLeft += figuren[i].getWidth() + spaceBetweenFigures; // Increment by width + space
                 }
             }
         };
