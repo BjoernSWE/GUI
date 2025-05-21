@@ -39,8 +39,8 @@ public class Person extends Figur {
         int offsetTop = maxHeightPanel - this.getHeight();
 
         int headW = (int) (headRadius * factor);
-        int headH = (int) (headRadius * factor * 0.75);
-        g2.fillOval((x + getWidth() / 2) - headW / 2, offsetTop, headW, headH);
+        int headH = (int) (headRadius * factor);
+        g2.fillOval((x + getWidth() / 2) - headW / 2, offsetTop + 10, headW, headH);
         offsetTop += headH;
 
         int neckW = (int) (neckWidth * factor);
@@ -60,7 +60,7 @@ public class Person extends Figur {
 
         int legW = (int) (legsWidth * factor);
         int legH = (int) (legsHeight * factor);
-        g2.fillRect(x + getWidth() / 2 - legW - 2, offsetTop, legW, legH);
-        g2.fillRect(x + getWidth() / 2 + 2, offsetTop, legW, legH);
+        g2.fillRect((x + getWidth() / 2) - bodyW / 2, offsetTop, legW, legH);
+        g2.fillRect((x + getWidth() / 2) + bodyW / 2 - legW, offsetTop, legW, legH);
     }
 }
